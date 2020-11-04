@@ -25,11 +25,14 @@
       "prettier"
     ],
     "rules": {
+      "no-restricted-globals": ["error", "event", "fdescribe"],
       "prettier/prettier": "error",
       "no-use-before-define": "off",
       "react-hooks/rules-of-hooks": "error",
       "react-hooks/exhaustive-deps": "warn",
       "react/jsx-filename-extension": [1, { "extensions": [".tsx"] }],
+      "react/jsx-props-no-spreading": "off",
+      "react/prop-types": "off",
       "import/prefer-default-export": "off",
       "camelcase": "off",
       "@typescript-eslint/ban-types": "off",
