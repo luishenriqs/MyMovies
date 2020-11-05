@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 import { shade } from 'polished';
 import signUpBackgroundImg from '../../assets/backToTheFuture.jpg';
 
@@ -15,18 +15,31 @@ export const Container = styled.div`
 `;
 
 export const Content = styled.div`
+  width: 100%;
+  max-width: 700px;
   display: flex;
   align-items: center;
   flex-direction: column;
-  place-content: center;
-  width: 100%;
-  max-width: 700px;
+  justify-content: center;
+`;
 
+const appearFromRight = keyframes`
+  from {
+    opacity: 0;
+    transform: translateX(60px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+`;
+
+export const AnimationContainer = styled.div`
+  animation: ${appearFromRight} 1s;
   form {
-    margin: 80px 0;
+    margin: 35px auto 70px;
     width: 340px;
     text-align: center;
-
     h1 {
       margin-bottom: 24px;
     }
@@ -35,10 +48,11 @@ export const Content = styled.div`
   a {
     color: #f4ede8;
     display: block;
-    margin-bottom: 24px;
+    margin-top: 24px;
     text-decoration: none;
     transition: 0.2s;
     display: flex;
+    justify-content: center;
     align-items: center;
 
     svg {

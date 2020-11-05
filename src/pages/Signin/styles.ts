@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 import { shade } from 'polished';
 import signInBackgroundImg from '../../assets/mosaico.jpg';
 
@@ -9,18 +9,31 @@ export const Container = styled.div`
 `;
 
 export const Content = styled.div`
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  place-content: center;
   width: 100%;
   max-width: 700px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+`;
 
+const appearFromLeft = keyframes`
+  from {
+    opacity: 0;
+    transform: translateX(-60px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+`;
+
+export const AnimationContainer = styled.div`
+  animation: ${appearFromLeft} 1s;
   form {
-    margin: 80px 0;
+    margin: 55px auto 105px;
     width: 340px;
     text-align: center;
-
     h1 {
       margin-bottom: 24px;
     }
@@ -33,6 +46,7 @@ export const Content = styled.div`
     text-decoration: none;
     transition: 0.2s;
     display: flex;
+    justify-content: center;
     align-items: center;
 
     svg {
