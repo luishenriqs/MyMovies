@@ -1,62 +1,49 @@
 import React, { createContext, useCallback, useState, useContext } from 'react';
 
-interface AuthState {
-  name?: string;
+/* ***************************[INTERFACES]*********************************** */
+interface SignInCredentials {
+  email: string;
+  password: string;
+}
+
+interface AuthenticatedData {
+  name: string;
   email: string;
   password: string;
 }
 
 interface AuthContextData {
   user: object;
-  signIn(email: string, password: string): void;
-  signUp(name: string, email: string, password: string): void;
-  signOut(): void;
+  signIn(Credentials: SignInCredentials): Promise<void>;
+  // signOut(): void;
 }
+/* ************************************************************************** */
 
 const AuthContext = createContext<AuthContextData>({} as AuthContextData);
 
 const AuthProvider: React.FC = ({ children }) => {
-  const [data, setData] = useState<AuthState>(() => {
-    const name = localStorage.getItem('@MyMovies:name');
-    const email = localStorage.getItem('@MyMovies:email');
-    const password = localStorage.getItem('@MyMovies:password');
+  const [user, setUser] = useState<AuthenticatedData>({} as AuthenticatedData);
 
-    if (name && email && password) {
-      console.log('localStorage: ', name, email, password);
-      return { name, email, password };
-    }
-    return {} as AuthState;
-  });
-  const [user, setUser] = useState<AuthState>({} as AuthState);
-
-  const signUp = useCallback(async ({ name, email, password }) => {
-    localStorage.setItem('@MyMovies:name', name);
-    localStorage.setItem('@MyMovies:email', email);
-    localStorage.setItem('@MyMovies:password', password);
-    console.log('Cadastro realizado: ', name, email, password);
-    setData({ name, email, password });
-  }, []);
-
-  const signIn = useCallback(async ({ email, password }) => {
-    if (data.email === email && data.password === password) {
-      console.log('Usuário autorizado');
-      localStorage.setItem('@MyMoviesUser:email', email);
-      localStorage.setItem('@MyMoviesUser:password', password);
-      setUser({ email, password });
-    } else {
-      console.log('Usuário não cadastrado.');
-      throw new Error('User not registered.');
+  const signIn = useCallback(async ({ email, password }: AuthenticatedData) => {
+    /* Aqui busco os usuários cadastrados; */
+    const storaged = localStorage.getItem('@MyMovies:data');
+    const data = storaged ? JSON.parse(storaged) : [];
+    let i = 0;
+    /* Aqui verifico se o usuário que deseja se logar já é cadastrado; */
+    for (i = 0; i < data.length; i++) {
+      if (data[i].email === email && data[i].password === password) {
+        setUser(data[i]);
+      }
     }
   }, []);
 
-  const signOut = useCallback(async () => {
-    localStorage.removeItem('@MyMoviesUser:email');
-    localStorage.removeItem('@MyMoviesUser:password');
-    setUser({} as AuthState);
-  }, []);
+  // Aqui encerro a autenticação do usuário;
+  // const signOut = useCallback(async () => {
+  //   setUser();
+  // }, []);
 
   return (
-    <AuthContext.Provider value={{ user, signUp, signIn, signOut }}>
+    <AuthContext.Provider value={{ user, signIn }}>
       {children}
     </AuthContext.Provider>
   );
