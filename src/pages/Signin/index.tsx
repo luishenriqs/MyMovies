@@ -48,7 +48,7 @@ const SignIn: React.FC = () => {
         formRef.current?.setErrors(errors);
       }
     },
-    [signIn],
+    [signIn, history],
   );
 
   return (
