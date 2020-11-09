@@ -4,7 +4,6 @@ import { FiLogIn, FiMail, FiLock } from 'react-icons/fi';
 import { Form } from '@unform/web';
 import { FormHandles } from '@unform/core';
 import * as Yup from 'yup';
-import getValidationErrors from '../../utils/getErrors';
 import { useAuth } from '../../hooks/AuthContext';
 import Input from '../../components/input';
 import Button from '../../components/button';
@@ -44,8 +43,7 @@ const SignIn: React.FC = () => {
         history.push('/dashboard');
         /* ***************************************************************** */
       } catch (err) {
-        const errors = getValidationErrors(err);
-        formRef.current?.setErrors(errors);
+        console.log(err);
       }
     },
     [signIn, history],

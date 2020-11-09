@@ -30,7 +30,11 @@
       "no-use-before-define": "off",
       "no-console": "off",
       "no-plusplus": "off",
-      // "no-unused-vars": "off",
+      "vars-on-top": "off",
+      "no-unused-vars": "off",
+      "noImplicitAny": "off",
+      "no-constant-condition": "off",
+
       "react-hooks/rules-of-hooks": "error",
       "react-hooks/exhaustive-deps": "warn",
       "react/jsx-filename-extension": [1, { "extensions": [".tsx"] }],
@@ -39,6 +43,17 @@
       "import/prefer-default-export": "off",
       "camelcase": "off",
       "@typescript-eslint/ban-types": "off",
+
+      "quotes": ["error", "single"],
+      "react/jsx-one-expression-per-line": "off",
+      "@typescript-eslint/no-use-before-define": ["error", {"variables": false}],
+      // "@typescript-eslint/explicit-function-return-type": [
+      //   "error",
+      //   {
+      //     "allowExpressions": true
+      //   }
+      // ],
+
       "import/extensions": [
         "error",
         "ignorePackages",

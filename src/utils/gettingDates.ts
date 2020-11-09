@@ -1,6 +1,11 @@
 import { format, sub } from 'date-fns';
 
-const GettingDates = () => {
+interface Dates {
+  initialDate: string;
+  todayDate: string;
+}
+
+const GettingDates = (): Dates => {
   const todayDate = format(new Date(), 'yyyy-MM-dd');
   const result = sub(new Date(), {
     years: 0,

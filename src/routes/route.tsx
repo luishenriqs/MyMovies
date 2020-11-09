@@ -28,8 +28,6 @@ const Route: React.FC<RouteProps> = ({
   const { user } = useAuth();
   const auth = Object.values(user);
 
-  console.log(auth[0]);
-
   return (
     <ReactDOMRoute
       {...rest}
