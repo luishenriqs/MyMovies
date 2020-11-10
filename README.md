@@ -1,46 +1,31 @@
-# Getting Started with Create React App
+Descrição
+Esta aplicação foi desenvolvida em React (create-react-app) para consumir a Api pública do site TMDB (www.themoviedb.org). Para a sua construção foram usadas várias bibliotecas de auxílio no desenvolvimento além dos conceitos de "Hooks" e "Contexto".
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+INICIALIZAÇÃO
+Para abrir a aplicação no navegador vá para o terminal na pasta do projeto e digite o comando "yarn start"
 
-## Available Scripts
+PÁGINAS
 
-In the project directory, you can run:
+SIGNUP
+Página destinada ao cadastro de novos usuários. Como esta aplicação não conta com integração com backend, nem banco de dados, optamos por salvar os dados de login no LocalStorage.
 
-### `yarn start`
+SIGNIN
+Após se cadastrar o usuário está apto para fazer o login e acessar o conteúdo privado da aplicação.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+DASHBOARD
+A Dashboard é a página principal desta aplicação. De conteúdo privado, permitido acesso apenas para usuários logados, ela apresenta uma lista de filmes em destaque, os mais populares nos últimos 30 dias. Os cartazes dos filmes são exibidos em cards, que quando clicados direcionam a aplicação para a página Movie.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+MOVIE
+Página privada de exibição do poster do filme alvo da ação.
 
-### `yarn test`
+BESTOFYEAR
+Pagina privada de exibição de lista com os melhores filmes do ano.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `yarn build`
+COMPONENTES
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+HEADER
+O Header é de propriedade exclusiva das páginas de acesso privado. Apresenta a logo, um link para a página "BestOfYear" com os melhores filmes do ano, a informação de usuário logado e sua identificação, por fim, o botão de logout.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+TOOLTIP
+O tooltip é um importânte instrumento de auxílio no preenchimento do formulário nas páginas de signin e signup. Caso um dos campos obrigatórios não sejam preenchidos corretamente ou estejam vazios um mensagem de tooltip é exibida alertando o usuário

@@ -5,6 +5,7 @@ import { Form } from '@unform/web';
 import { FormHandles } from '@unform/core';
 import * as Yup from 'yup';
 import { useAuth } from '../../hooks/AuthContext';
+import getValidationErrors from '../../utils/getErrors';
 import Input from '../../components/input';
 import Button from '../../components/button';
 import LogoImg from '../../assets/logo2.png';
@@ -43,7 +44,8 @@ const SignIn: React.FC = () => {
         history.push('/dashboard');
         /* ***************************************************************** */
       } catch (err) {
-        console.log(err);
+        const errors = getValidationErrors(err);
+        formRef.current?.setErrors(errors);
       }
     },
     [signIn, history],

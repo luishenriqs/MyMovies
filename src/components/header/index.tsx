@@ -1,5 +1,5 @@
 import React, { useCallback } from 'react';
-import { useHistory } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { useAuth } from '../../hooks/AuthContext';
 import { Container } from './styles';
 import LogoImg from '../../assets/logo3.png';
@@ -24,6 +24,7 @@ const Header: React.FC = () => {
     <Container>
       <div id="logo">
         <img src={LogoImg} alt="My movies" />
+        <Link to="/bestofyear">Melhores do Ano</Link>
       </div>
       <div id="login">
         <h4>Usuário logado:</h4>

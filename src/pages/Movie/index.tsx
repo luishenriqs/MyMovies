@@ -4,12 +4,12 @@ import { Link } from 'react-router-dom';
 import Header from '../../components/header';
 import { WorkSpace, MovieContainer } from './styles';
 
+/* ********************[CAPTURA DO POSTER_PATH]****************************** */
 const Movie: React.FC = () => {
   const url = window.location;
   const path = url.pathname.split(':');
-
   const movie_poster = path[1];
-
+  /* ************************************************************************ */
   return (
     <>
       <Header />

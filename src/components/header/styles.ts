@@ -7,12 +7,25 @@ export const Container = styled.div`
   height: 56px;
 
   #logo {
+    display: flex;
     width: 90%;
     background: #c53030;
     border-radius: 5px;
 
     img {
-      width: 250px;
+      width: 300px;
+      height: 82px;
+    }
+
+    a {
+      margin: 15px 0 15px 50px;
+      color: #ff9000;
+      font-size: 22px;
+      text-decoration: none;
+
+      &:hover {
+        font-size: 26px;
+      }
     }
   }
 

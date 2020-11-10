@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
+import { FiChevronLeft } from 'react-icons/fi';
 import { Link } from 'react-router-dom';
 import Header from '../../components/header/index';
 import api from '../../services/api';
-import GettingDates from '../../utils/gettingDates';
 import { WorkSpace, Container, MovieContainer } from './styles';
 
 /* ***************************[INTERFACES]*********************************** */
@@ -30,28 +30,23 @@ interface MovieData {
 }
 /* ************************************************************************** */
 
-const Dashboard: React.FC = () => {
+const BestOfYear: React.FC = () => {
   const [repository, setRepository] = useState<Repository>({} as Repository);
 
   /* ***********************[API_KEY FROM TMDB]****************************** */
   const api_key = '2964b6cd71e6a379510ab626bdca951e';
   /* ************************************************************************ */
 
-  /* *********************[Capturando últimos 30 dias]*********************** */
-  const { initialDate } = GettingDates();
-  const { todayDate } = GettingDates();
-  /* ************************************************************************ */
-
-  /* *****************[MOST POPULAR OF THE LAST 30 DAYS]********************* */
+  /* ***********************[BEST OF YEAR 2020]****************************** */
   useEffect(() => {
     api
       .get(
-        `/discover/movie?api_key=${api_key}&primary_release_date.gte=${initialDate}&primary_release_date.lte=${todayDate}&language=pt-BR&sort_by=popularity.desc`,
+        `/discover/movie?api_key=${api_key}&certification_country=US&certification.lte=G&sort_by=popularity.desc`,
       )
       .then(response => {
         setRepository(response.data);
       });
-  }, [initialDate, todayDate]);
+  }, []);
 
   const { results } = repository;
 
@@ -61,7 +56,11 @@ const Dashboard: React.FC = () => {
       <Header />
       <WorkSpace>
         <Container>
-          <h1>DESTAQUES</h1>
+          <Link to="/dashboard">
+            <FiChevronLeft size={20} />
+            <h2>Voltar</h2>
+          </Link>
+          <h1>OS MELHORES DO ANO</h1>
           <MovieContainer>
             {results ? (
               results.map(movie => (
@@ -85,4 +84,4 @@ const Dashboard: React.FC = () => {
   );
 };
 
-export default Dashboard;
+export default BestOfYear;

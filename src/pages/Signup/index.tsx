@@ -4,6 +4,7 @@ import { FiMail, FiLock, FiArrowLeft, FiUser } from 'react-icons/fi';
 import { Form } from '@unform/web';
 import { FormHandles } from '@unform/core';
 import * as Yup from 'yup';
+import getValidationErrors from '../../utils/getErrors';
 import Input from '../../components/input';
 import Button from '../../components/button';
 import LogoImg from '../../assets/logo2.png';
@@ -55,7 +56,8 @@ const SignUp: React.FC = () => {
         setRegistered([...registered, data]);
         history.push('/');
       } catch (err) {
-        console.log(err);
+        const errors = getValidationErrors(err);
+        formRef.current?.setErrors(errors);
       }
     },
     [registered, history],
