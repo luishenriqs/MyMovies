@@ -1,3 +1,7 @@
+CONHEÇA ESSE TRABALHO ACESSANDO AO LINK ABAIXO DO VÍDEO PUBLICADO NO MEU LINKEDIN.
+
+https://www.linkedin.com/posts/luis-h-pereira-nodejs-react-native_react-activity-6731924043710160896-7-gz
+
 Descrição
 Esta aplicação foi desenvolvida em React (create-react-app) para consumir a Api pública do site TMDB (www.themoviedb.org). Para a sua construção foram usadas várias bibliotecas de auxílio no desenvolvimento além dos conceitos de "Hooks" e "Contexto".
 
