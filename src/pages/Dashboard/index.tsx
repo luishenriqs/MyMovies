@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import Header from '../../components/header/index';
 import api from '../../services/api';
 import GettingDates from '../../utils/gettingDates';
-import { WorkSpace, MovieContainer } from './styles';
+import { WorkSpace, Container, MovieContainer } from './styles';
 
 interface Repository {
   page: number;
@@ -41,12 +41,11 @@ const Dashboard: React.FC = () => {
   const { todayDate } = GettingDates();
   /* ************************************************************************ */
 
-  /* ********************[Consumindo API PÚBLICA TMDB]*********************** */
-  // Listagem dos filmes mais populares dos últimos 30 dias;
+  /* *****************[MOST POPULAR OF THE LAST 30 DAYS]********************* */
   useEffect(() => {
     api
       .get(
-        `discover/movie?api_key=${api_key}&primary_release_date.gte=${initialDate}&primary_release_date.lte=${todayDate}&language=pt-BR&sort_by=popularity.desc`,
+        `/discover/movie?api_key=${api_key}&primary_release_date.gte=${initialDate}&primary_release_date.lte=${todayDate}&language=pt-BR&sort_by=popularity.desc`,
       )
       .then(response => {
         setRepository(response.data);
@@ -60,27 +59,26 @@ const Dashboard: React.FC = () => {
     <>
       <Header />
       <WorkSpace>
-        <MovieContainer>
-          {results ? (
-            results.map(movie => (
-              <div className="box" key={movie.id}>
-                <Link to="/">
-                  {/* <img
-                    src={repository.owner.avatar_url}
-                    alt={repository.owner.login}
-                  /> */}
-                  <div className="content">
+        <Container>
+          <h1>Os mais populares do mês</h1>
+          <MovieContainer>
+            {results ? (
+              results.map(movie => (
+                <div className="box" key={movie.id}>
+                  <Link to={`/movie/:${movie.poster_path}`}>
+                    <img
+                      src={`http://image.tmdb.org/t/p/w342/${movie.poster_path}`}
+                      alt={movie.title}
+                    />
                     <strong>{movie.title}</strong>
-                    <p>{movie.overview}</p>
-                  </div>
-                  <FiChevronRight size={20} />
-                </Link>
-              </div>
-            ))
-          ) : (
-            <h1>Loading...</h1>
-          )}
-        </MovieContainer>
+                  </Link>
+                </div>
+              ))
+            ) : (
+              <h1>Loading...</h1>
+            )}
+          </MovieContainer>
+        </Container>
       </WorkSpace>
     </>
   );
